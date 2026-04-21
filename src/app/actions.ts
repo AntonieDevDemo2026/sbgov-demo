@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
+import { isShowcaseMode } from "@/lib/demo-mode";
 import { getTriageSummary } from "@/lib/triage";
 
 const incidentSchema = z.object({
@@ -24,6 +25,10 @@ export async function createIncident(formData: FormData) {
     dateAwareness: formData.get("dateAwareness") || undefined,
     narrative: formData.get("narrative"),
   });
+
+  if (isShowcaseMode) {
+    redirect("/cases/case-1042");
+  }
 
   const jurisdiction = await prisma.jurisdiction.findUniqueOrThrow({
     where: { code: parsed.jurisdictionCode },

@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
+import { showcaseJurisdictions } from "@/data/showcase";
+import { isShowcaseMode } from "@/lib/demo-mode";
 import { prisma } from "@/lib/db";
 
 export default async function JurisdictionDetailPage({
@@ -8,7 +10,9 @@ export default async function JurisdictionDetailPage({
   params: Promise<{ code: string }>;
 }) {
   const { code } = await params;
-  const jurisdiction = await prisma.jurisdiction.findUnique({ where: { code } });
+  const jurisdiction = isShowcaseMode
+    ? showcaseJurisdictions.find((item) => item.code === code) ?? null
+    : await prisma.jurisdiction.findUnique({ where: { code } });
 
   if (!jurisdiction) {
     notFound();

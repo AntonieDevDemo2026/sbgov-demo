@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
+import { showcaseJurisdictions } from "@/data/showcase";
+import { isShowcaseMode } from "@/lib/demo-mode";
 import { prisma } from "@/lib/db";
 
 export default async function JurisdictionsPage() {
@@ -9,7 +11,9 @@ export default async function JurisdictionsPage() {
       intro="Searchable country-level guidance is one of the strongest reasons this product should exist. Start with a small set of high-priority markets and make the logic usable."
     >
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {(await prisma.jurisdiction.findMany({ orderBy: { name: "asc" } })).map((item) => (
+        {(isShowcaseMode
+          ? showcaseJurisdictions
+          : await prisma.jurisdiction.findMany({ orderBy: { name: "asc" } })).map((item) => (
           <article key={item.code} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <p className="text-sm text-slate-500">{item.region}</p>
             <h2 className="mt-2 text-2xl font-semibold text-slate-950">{item.name}</h2>

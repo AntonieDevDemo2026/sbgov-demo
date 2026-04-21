@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
+import { showcaseCases } from "@/data/showcase";
+import { isShowcaseMode } from "@/lib/demo-mode";
 import { prisma } from "@/lib/db";
 
 export default async function CasesPage() {
@@ -9,7 +11,9 @@ export default async function CasesPage() {
       intro="A simple case workspace is enough for v1. It gives teams somewhere to store rationale, status, and evidence instead of losing the decision trail."
     >
       <div className="space-y-4">
-        {(await prisma.incident.findMany({ orderBy: { id: "desc" }, include: { jurisdiction: true, assessments: true } })).map((item) => (
+        {(isShowcaseMode
+          ? showcaseCases
+          : await prisma.incident.findMany({ orderBy: { id: "desc" }, include: { jurisdiction: true, assessments: true } })).map((item) => (
           <article key={item.id} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
               <div>

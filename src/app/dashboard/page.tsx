@@ -1,18 +1,27 @@
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
+import { showcaseCases, showcaseMetrics } from "@/data/showcase";
+import { isShowcaseMode } from "@/lib/demo-mode";
 import { prisma } from "@/lib/db";
 
 export default async function DashboardPage() {
-  const [jurisdictionCount, incidentCount, reportableCount, latestIncidents] = await Promise.all([
-    prisma.jurisdiction.count(),
-    prisma.incident.count(),
-    prisma.incidentAssessment.count({ where: { isPotentiallyReportable: true } }),
-    prisma.incident.findMany({
-      orderBy: { id: "desc" },
-      include: { jurisdiction: true, assessments: true },
-      take: 5,
-    }),
-  ]);
+  const [jurisdictionCount, incidentCount, reportableCount, latestIncidents] = isShowcaseMode
+    ? [
+        showcaseMetrics.jurisdictions,
+        showcaseMetrics.incidents,
+        showcaseMetrics.reportable,
+        showcaseCases,
+      ]
+    : await Promise.all([
+        prisma.jurisdiction.count(),
+        prisma.incident.count(),
+        prisma.incidentAssessment.count({ where: { isPotentiallyReportable: true } }),
+        prisma.incident.findMany({
+          orderBy: { id: "desc" },
+          include: { jurisdiction: true, assessments: true },
+          take: 5,
+        }),
+      ]);
 
   return (
     <AppShell

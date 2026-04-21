@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
+import { showcaseCases } from "@/data/showcase";
+import { isShowcaseMode } from "@/lib/demo-mode";
 import { prisma } from "@/lib/db";
 
 export default async function CaseDetailPage({
@@ -8,10 +10,12 @@ export default async function CaseDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const item = await prisma.incident.findUnique({
-    where: { id },
-    include: { jurisdiction: true, assessments: true, evidence: true },
-  });
+  const item = isShowcaseMode
+    ? showcaseCases.find((entry) => entry.id === id) ?? null
+    : await prisma.incident.findUnique({
+        where: { id },
+        include: { jurisdiction: true, assessments: true, evidence: true },
+      });
 
   if (!item) {
     notFound();

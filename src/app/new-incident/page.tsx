@@ -1,9 +1,13 @@
 import { AppShell } from "@/components/app-shell";
-import { prisma } from "@/lib/db";
 import { createIncident } from "@/app/actions";
+import { showcaseJurisdictions } from "@/data/showcase";
+import { isShowcaseMode } from "@/lib/demo-mode";
+import { prisma } from "@/lib/db";
 
 export default async function NewIncidentPage() {
-  const jurisdictions = await prisma.jurisdiction.findMany({ orderBy: { name: "asc" } });
+  const jurisdictions = isShowcaseMode
+    ? showcaseJurisdictions
+    : await prisma.jurisdiction.findMany({ orderBy: { name: "asc" } });
 
   return (
     <AppShell
