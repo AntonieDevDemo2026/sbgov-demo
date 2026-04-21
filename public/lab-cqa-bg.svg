@@ -1,0 +1,57 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#E8F0F7"/>
+  <rect width="1600" height="1000" fill="url(#paint0_radial)" fill-opacity="0.9"/>
+  <g opacity="0.28" filter="url(#filter0_f)">
+    <ellipse cx="1178" cy="229" rx="264" ry="180" fill="#93C5FD"/>
+  </g>
+  <g opacity="0.3" filter="url(#filter1_f)">
+    <ellipse cx="350" cy="821" rx="390" ry="210" fill="#C7D2FE"/>
+  </g>
+  <g opacity="0.7">
+    <rect x="1178" y="122" width="170" height="510" rx="85" fill="#F8FCFF" stroke="#C9D9E8" stroke-width="10"/>
+    <rect x="1212" y="181" width="102" height="359" rx="50" fill="url(#paint1_linear)"/>
+    <path d="M1212 360C1232 345 1250 338 1266 338C1283 338 1299 344 1314 358V490C1298 507 1282 515 1265 515C1247 515 1230 508 1212 493V360Z" fill="#2563EB" fill-opacity="0.24"/>
+    <circle cx="1263" cy="140" r="26" fill="#F8FCFF" stroke="#C9D9E8" stroke-width="10"/>
+  </g>
+  <g opacity="0.72">
+    <path d="M1071 657L1144 790C1160 819 1139 855 1106 855H960C927 855 906 819 922 790L995 657C1011 628 1055 628 1071 657Z" fill="#F8FCFF" stroke="#C9D9E8" stroke-width="10"/>
+    <path d="M982 770C1005 742 1029 728 1054 728C1078 728 1102 741 1126 768C1099 792 1075 804 1053 804C1030 804 1006 793 982 770Z" fill="#14B8A6" fill-opacity="0.22"/>
+    <rect x="1008" y="603" width="50" height="74" rx="18" fill="#F8FCFF" stroke="#C9D9E8" stroke-width="10"/>
+  </g>
+  <g opacity="0.9">
+    <rect x="126" y="155" width="570" height="395" rx="24" fill="#F8FCFF" stroke="#D7E3EE" stroke-width="8"/>
+    <rect x="158" y="193" width="506" height="42" rx="12" fill="#E2E8F0"/>
+    <rect x="158" y="264" width="226" height="212" rx="16" fill="#EFF6FF"/>
+    <path d="M196 429L239 384L275 404L336 329" stroke="#0F172A" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="336" cy="329" r="13" fill="#2563EB"/>
+    <rect x="414" y="280" width="218" height="18" rx="9" fill="#CBD5E1"/>
+    <rect x="414" y="320" width="182" height="18" rx="9" fill="#CBD5E1"/>
+    <rect x="414" y="360" width="208" height="18" rx="9" fill="#CBD5E1"/>
+    <rect x="414" y="420" width="145" height="32" rx="16" fill="#DBEAFE"/>
+  </g>
+  <g opacity="0.38">
+    <circle cx="178" cy="113" r="32" fill="#BFDBFE"/>
+    <circle cx="258" cy="113" r="12" fill="#93C5FD"/>
+    <circle cx="223" cy="76" r="10" fill="#93C5FD"/>
+  </g>
+  <defs>
+    <filter id="filter0_f" x="714" y="-151" width="928" height="760" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur"/>
+    </filter>
+    <filter id="filter1_f" x="-240" y="411" width="1180" height="820" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur"/>
+    </filter>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 500) rotate(90) scale(600 900)">
+      <stop stop-color="#F8FBFE"/>
+      <stop offset="1" stop-color="#DCE9F5"/>
+    </radialGradient>
+    <linearGradient id="paint1_linear" x1="1263" y1="181" x2="1263" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DBEAFE"/>
+      <stop offset="1" stop-color="#BFDBFE"/>
+    </linearGradient>
+  </defs>
+</svg>

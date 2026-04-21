@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Jurisdiction {
+  id              String           @id @default(cuid())
+  code            String           @unique
+  name            String
+  region          String
+  authority       String
+  timeline        String
+  summary         String
+  rule            String
+  regulatoryRules RegulatoryRule[]
+  incidents       Incident[]
+}
+
+model RegulatoryRule {
+  id                String       @id @default(cuid())
+  jurisdictionId    String
+  incidentCategory  String
+  summary           String
+  reportabilityLogic String
+  reportingTimeline String
+  authorityName     String
+  sourceReference   String?
+  version           String?
+  jurisdiction      Jurisdiction @relation(fields: [jurisdictionId], references: [id], onDelete: Cascade)
+}
+
+model Incident {
+  id              String               @id @default(cuid())
+  title           String
+  trialReference  String?
+  jurisdictionId  String
+  incidentType    String
+  dateOccurred    DateTime?
+  dateAwareness   DateTime?
+  narrative       String
+  createdBy       String?
+  jurisdiction    Jurisdiction         @relation(fields: [jurisdictionId], references: [id])
+  assessments     IncidentAssessment[]
+  evidence        CaseEvidence[]
+}
+
+model IncidentAssessment {
+  id                     String   @id @default(cuid())
+  incidentId             String
+  suggestedClassification String
+  isPotentiallyReportable Boolean
+  rationale              String
+  nextSteps              String
+  deadlineSummary        String?
+  incident               Incident @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+}
+
+model CaseEvidence {
+  id         String   @id @default(cuid())
+  incidentId String
+  note       String
+  kind       String?
+  createdBy  String?
+  incident   Incident @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+}
+
+model Playbook {
+  id       String  @id @default(cuid())
+  title    String
+  slug     String  @unique
+  content  String
+  version  String?
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  entityType String
+  entityId   String
+  action     String
+  actor      String?
+  createdAt  DateTime @default(now())
+}
